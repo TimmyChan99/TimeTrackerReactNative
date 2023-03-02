@@ -1,4 +1,4 @@
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 
@@ -31,9 +31,11 @@ const DateSelector = () => {
 
   return (
     <View>
-      <Text>{dateString}</Text>
-      <Text>{dayString}</Text>
-      <Button title="Select Date" onPress={() => setIsOpened(true)} />
+      <Pressable onPress={() => setIsOpened(true)}>
+        <Text>{dateString}</Text>
+        <Text>{dayString}</Text>
+      </Pressable>
+      {/* <Button title="Select Date" onPress={() => setIsOpened(true)} /> */}
       <DatePicker
         modal
         mode="date"
