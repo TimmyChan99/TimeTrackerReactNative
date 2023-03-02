@@ -8,11 +8,13 @@
 import React from 'react';
 
 import {Text, View} from 'react-native';
+import TimePicker from './components/TimePicker';
 
 function App(): JSX.Element {
   return (
     <View>
-      <Text>kilom</Text>
+      <TimePicker timeType="Start Time" />
+      <TimePicker timeType="End Time" />
     </View>
   );
 }
