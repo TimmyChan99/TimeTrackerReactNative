@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.71.3",
+    "react-native-date-picker": "^4.2.9",
     "react-native-select-dropdown": "^3.3.0"
   },
   "devDependencies": {

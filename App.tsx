@@ -8,6 +8,7 @@
 import React from 'react';
 
 import {Text, View} from 'react-native';
+import DateSelector from './components/DateSelector';
 import TimePicker from './components/TimePicker';
 
 function App(): JSX.Element {
@@ -15,6 +16,7 @@ function App(): JSX.Element {
     <View>
       <TimePicker timeType="Start Time" />
       <TimePicker timeType="End Time" />
+      <DateSelector />
     </View>
   );
 }
