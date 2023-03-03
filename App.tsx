@@ -8,15 +8,12 @@
 import React from 'react';
 
 import {Text, View} from 'react-native';
-import DateSelector from './components/DateSelector';
-import TimePicker from './components/TimePicker';
+import TrackersList from './components/TrackersList';
 
 function App(): JSX.Element {
   return (
     <View>
-      <TimePicker timeType="Start Time" />
-      <TimePicker timeType="End Time" />
-      <DateSelector />
+      <TrackersList />
     </View>
   );
 }
