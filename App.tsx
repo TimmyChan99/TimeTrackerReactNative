@@ -6,15 +6,14 @@
  */
 
 import React from 'react';
-
-import {Text, View} from 'react-native';
 import TrackersList from './components/TrackersList';
+import TrackersProvider from './TrackersProvider';
 
 function App(): JSX.Element {
   return (
-    <View>
+    <TrackersProvider>
       <TrackersList />
-    </View>
+    </TrackersProvider>
   );
 }
 

@@ -2,13 +2,15 @@ import {View} from 'react-native';
 import React from 'react';
 import DateSelector from './DateSelector';
 import TimePicker from './TimePicker';
+import {Tracker} from '../TrackersProvider';
 
-const DateRow = () => {
+const DateRow = ({tracker}: {tracker: Tracker}) => {
+  const {id, startTime, endTime} = tracker;
   return (
     <View>
       <DateSelector />
-      <TimePicker timeType="Start Time" />
-      <TimePicker timeType="End Time" />
+      <TimePicker timeType="startTime" id={id} hour={startTime} />
+      <TimePicker timeType="endTime" id={id} hour={endTime} />
     </View>
   );
 };

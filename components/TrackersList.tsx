@@ -1,21 +1,16 @@
-import {View, Text, Button, ScrollView} from 'react-native';
+import {View, Button, ScrollView} from 'react-native';
 import React from 'react';
 import DateRow from './DateRow';
+import {useTrackers} from '../TrackersProvider';
 
 const TrackersList = () => {
-  const [trackers, setTrackers] = React.useState([1]);
+  const {trackers, addTracker} = useTrackers();
   const trackersList = trackers.map(tracker => (
-    <View key={tracker}>
-      <Text>Tracker {tracker}</Text>
-      <DateRow />
+    <View key={tracker.id}>
+      <DateRow tracker={tracker} />
     </View>
   ));
 
-  // Add a new tracker
-  const addTracker = () => {
-    const newTracker = trackers.length + 1;
-    setTrackers([...trackers, newTracker]);
-  };
   return (
     <ScrollView>
       <Button title="Add Tracker" onPress={() => addTracker()} />
