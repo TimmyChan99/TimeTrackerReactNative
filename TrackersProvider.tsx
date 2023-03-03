@@ -53,7 +53,6 @@ const TrackersProvider = ({children}: {children: ReactNode}) => {
         }
         return tracker;
       });
-      console.log('trackers', newTrackers);
       return newTrackers;
     });
   };
