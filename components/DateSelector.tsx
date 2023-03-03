@@ -28,14 +28,28 @@ const DateSelector = () => {
   const [date, setDate] = useState(new Date());
   const [isOpened, setIsOpened] = useState(false);
   const {dateString, dayString} = setDateandDay(date.toString());
+  const [dateString2, setDateString2] = useState(dateString);
+  const [dayString2, setDayString2] = useState(dayString);
+
+  // Navigate to next and previous day
+  const dateNavigation = (action: string) => {
+    const currentDate = new Date(date);
+    const navigate = action === 'next' ? 1 : -1;
+    currentDate.setDate(currentDate.getDate() + navigate);
+    const {dateString, dayString} = setDateandDay(currentDate.toString());
+    setDateString2(dateString);
+    setDayString2(dayString);
+    console.log(date);
+  };
 
   return (
     <View>
       <Pressable onPress={() => setIsOpened(true)}>
-        <Text>{dateString}</Text>
-        <Text>{dayString}</Text>
+        <Button title="prev" onPress={() => dateNavigation('prev')} />
+        <Text>{dateString2}</Text>
+        <Button title="next" onPress={() => dateNavigation('next')} />
+        <Text>{dayString2}</Text>
       </Pressable>
-      {/* <Button title="Select Date" onPress={() => setIsOpened(true)} /> */}
       <DatePicker
         modal
         mode="date"
