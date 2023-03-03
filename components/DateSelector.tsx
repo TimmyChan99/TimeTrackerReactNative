@@ -1,6 +1,7 @@
 import {View, Text, Button, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
+import {Tracker, useTrackers} from '../TrackersProvider';
 
 // Set date and day from input. This is used to display the date and day in string format
 const setDateandDay = (date: string) => {
@@ -24,11 +25,13 @@ const setDateandDay = (date: string) => {
   return {dateString, dayString};
 };
 
-const DateSelector = () => {
-  const [date, setDate] = useState(new Date());
-  const [isOpened, setIsOpened] = useState(false);
-  const {dateString, dayString} = setDateandDay(date.toString());
+// Date selector component
+const DateSelector = ({tracker}: {tracker: Tracker}) => {
+  const {id, date, day} = tracker;
+  const {updateTracker} = useTrackers();
 
+  // control date picker modal
+  const [isOpened, setIsOpened] = useState(false);
 
   // Navigate to next and previous day
   const dateNavigation = (action: string) => {
@@ -36,25 +39,33 @@ const DateSelector = () => {
     const navigate = action === 'next' ? 1 : -1;
     currentDate.setDate(currentDate.getDate() + navigate);
     const {dateString, dayString} = setDateandDay(currentDate.toString());
+    updateTracker('date', dateString, id);
+    updateTracker('day', dayString, id);
   };
+
+  // Defaut date and day if day is not set
+  const {dateString: defaultDate, dayString: defaultDay} = setDateandDay(date);
 
   return (
     <View>
       <Pressable onPress={() => setIsOpened(true)}>
         <Button title="prev" onPress={() => dateNavigation('prev')} />
-        <Text>{dateString}</Text>
+        <Text>{day === '' ? defaultDate : date}</Text>
         <Button title="next" onPress={() => dateNavigation('next')} />
-        <Text>{dayString}</Text>
+        <Text>{day === '' ? defaultDay : day}</Text>
       </Pressable>
       <DatePicker
         modal
         mode="date"
-        date={date}
+        date={new Date()}
         open={isOpened}
-        onConfirm={date => {
-          setDate(date);
+        onConfirm={selectedDate => {
+          const {dateString, dayString} = setDateandDay(
+            selectedDate.toString(),
+          );
+          updateTracker('date', dateString, id);
+          updateTracker('day', dayString, id);
           setIsOpened(false);
-          console.log(date);
         }}
         onCancel={() => setIsOpened(false)}
       />

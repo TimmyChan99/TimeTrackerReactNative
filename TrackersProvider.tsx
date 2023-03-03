@@ -18,7 +18,7 @@ type TrackersContextType = {
 
 const trackerInitialValue = {
   id: '',
-  date: '',
+  date: new Date().toString(),
   startTime: '',
   endTime: '',
   totalHours: 0,
