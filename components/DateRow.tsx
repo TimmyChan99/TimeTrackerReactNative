@@ -31,7 +31,7 @@ const DateRow = ({tracker}: {tracker: Tracker}) => {
   return (
     <View>
       <View>
-      <DateSelector tracker={tracker} />
+        <DateSelector tracker={tracker} />
       </View>
       <View>
         <TimePicker timeType="startTime" id={id} hour={startTime} />
